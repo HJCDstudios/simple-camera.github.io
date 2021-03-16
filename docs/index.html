@@ -21,10 +21,17 @@ var options = {
 video:null,
 audio:null
 }
+//width and height
+var w = 300,
+  h = 0;
+const Video1 = document.getElementById("camera_view");
+const canvas = document.getElementById("img");
 //start video
 function start_video() {
 navigator.mediaDevices.getUserMedia(options).then(function(stream){
-document.getElementById("camera_view").srcObject = stream;
+Video1.srcObject = stream;
+Video1.width = w;
+Video1.height = h;
 }).catch((error) => {
 document.getElementById("errors").innerHTML = error;
 });
@@ -71,8 +78,26 @@ function vid(enable) {
 localStorage.setItem("vid",enable);
 load_data();
 }
+//callback for taking pictures
+function TakePicture() {
+  if (w && h) {
+    var con = canvas.getContext("2d");
+    canvas.width = w;
+    canvas.height = h;
+    con.drawImage(Video1,0,0,w,h);
+    canvas.toDataURL('image/png');
+    home.style.display = "none";
+    prev.style.display = "block";
+  } else {
+  }
+}
+function back() {
+  home.style.display = "block";
+  prev.style.display = "none";
+}
 </script>
 <body onLoad="load_data();">
+<div id="home">
 <video id="camera_view" autoplay></video>
 <hr>
 <i class="fa fa-microphone"> Mic <input type="checkbox" id="mic_enable" onClick="mic(this.checked);"></i>
@@ -81,6 +106,11 @@ load_data();
 <i class="fa fa-camera"> Video <input type="checkbox" id="vid_enable1" onClick="vid(this.checked);"></i>
 <hr>
 <div id="errors">
+</div>
+</div>
+<div id="prev">
+<canvas id="img"></canvas>
+<input type="button" value="Back" onClick="back()">
 </div>
 </body>
 </html>
