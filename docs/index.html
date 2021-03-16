@@ -1,18 +1,25 @@
 <html>
 <head>
 <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
-<meta http-equiv = "Content-Type" content = "text/html; charset = utf-8">Up
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="description" content="A simple camera with custom stuff by HJCD studios">
 <meta name="keywords" content="HJCD studios,Camera,hjcd studios">
 <meta name="author" content="HJCD studios">
 <title>HJCD studios | Simple Camera</title>
 </head>
 <style type="text/css">
-video {
-width: 100%;
-}
 i {
 font-size: 20px;
+}
+#prev {
+  display: none;
+}
+input[type="button"] {
+  color: rgb(0,150,255);
+  border-color: rgb(0,150,255);
+  border-radius: rgb(0,150,255);
+  background-color: white;
+  font-size: 20px;
 }
 </style>
 </head>
@@ -104,6 +111,8 @@ function back() {
 <br>
 <br>
 <i class="fa fa-camera"> Video <input type="checkbox" id="vid_enable1" onClick="vid(this.checked);"></i>
+<br>
+<input type="button" value="Take Picture" onClick="TakePicture();">
 <hr>
 <div id="errors">
 </div>
