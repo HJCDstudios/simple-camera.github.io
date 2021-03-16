@@ -8,6 +8,9 @@
 <title>HJCD studios | Simple Camera</title>
 </head>
 <style type="text/css">
+video {
+  width: 100%;
+}
 i {
 font-size: 20px;
 }
@@ -17,7 +20,7 @@ font-size: 20px;
 input[type="button"] {
   color: rgb(0,150,255);
   border-color: rgb(0,150,255);
-  border-radius: rgb(0,150,255);
+  border-radius: 20px;
   background-color: white;
   font-size: 20px;
 }
@@ -31,11 +34,11 @@ audio:null
 //width and height
 var w = 300,
   h = 0;
-var Video1 = document.getElementById("camera_view");
 const canvas = document.getElementById("img");
 //start video
 function start_video() {
 navigator.mediaDevices.getUserMedia(options).then(function(stream){
+var Video1 = document.getElementById("camera_view");
 Video1.srcObject = stream;
 Video1.width = w;
 Video1.height = h;
@@ -87,6 +90,7 @@ load_data();
 }
 //callback for taking pictures
 function TakePicture() {
+  var Video1 = document.getElementById("camera_view");
   if (w && h) {
     var con = canvas.getContext("2d");
     canvas.width = w;
